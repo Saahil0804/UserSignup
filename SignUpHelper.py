@@ -9,6 +9,7 @@ def validationForUsername(Username):
     except Exception as e:
         print(f"An error occurred during username validation: {e}")
         return False
+
 # Validating password
 def validationForPassword(Pword):
     try :   
@@ -20,6 +21,7 @@ def validationForPassword(Pword):
     except Exception as e:
         print(f"An error occurred during username validation: {e}")
         return False
+
 # Validating email
 def validationForEmail(Email):
     try : 
@@ -31,6 +33,7 @@ def validationForEmail(Email):
     except Exception as e:
         print(f"An error occurred during username validation: {e}")
         return False
+
 # Validating phone number
 def validationForPhone(Phone):
     try :
@@ -42,6 +45,7 @@ def validationForPhone(Phone):
     except Exception as e:
         print(f"An error occurred during username validation: {e}")
         return False
+
 # Validating full name
 def validationForFName (fname, lname):
     try :
