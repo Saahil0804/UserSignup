@@ -55,6 +55,7 @@ def signInUser():
             cursor.close()
             connection.close()
 
+# Main execution
 if __name__ == "__main__":
     dbConnection()
     signInUser()
