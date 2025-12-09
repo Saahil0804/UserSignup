@@ -3,7 +3,7 @@ import psycopg2
 from dotenv import load_dotenv
 load_dotenv()
 
-# Function to connect to the database
+# Function to connect postgreSQL to the database
 def dbConnection():
     try:
         connection = psycopg2.connect(
