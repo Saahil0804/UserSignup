@@ -8,7 +8,7 @@ def deleteUserAccount():
         if connection is None:
             return "Failed to connect to the database."
         cursor = connection.cursor()
-        auth_query = "SELECT * FROM UserDetails WHERE email_id = %s AND is_active = true"    
+        auth_query = "SELECT * FROM UserDetails WHERE email_id = %s"    
         cursor.execute(auth_query, (email_id,))
         user = cursor.fetchone()
         if not user:
