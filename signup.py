@@ -1,5 +1,6 @@
 
 from Helper.SignUpHelper import *
+from datetime import datetime
 
 # Function to sign up a new user
 def signUpUser():
@@ -36,7 +37,7 @@ def signUpUser():
         if not Validphone:
             return "Entered phone number is not valid. Please try again."
 
-        result = insert_user_data(Username, Pword, FullName, email_id, phone_no)
+        result = insert_user_data(Username, Pword, FullName, email_id, phone_no, created_at=datetime.now(), updated_at=datetime.now(), created_by=FullName, updated_by=FullName)
         return result
     except ValueError:
         print("Invalid input. Please enter the correct data types.")
@@ -46,7 +47,7 @@ def signUpUser():
         return False
 
 # Function to insert user data into the database
-def insert_user_data(Username, Pword, FullName, email_id, phone_no):
+def insert_user_data(Username, Pword, FullName, email_id, phone_no,created_at=datetime.now(), updated_at=datetime.now(), created_by="", updated_by=""):
     try:
         connection = dbConnection()
         if connection is None:
@@ -56,10 +57,10 @@ def insert_user_data(Username, Pword, FullName, email_id, phone_no):
         if not isUserExist:
             return "User already exists with this email."
         insert_query = """
-                INSERT INTO UserDetails (Username, Pword, FullName, email_id, phone_no)
-                VALUES (%s, %s, %s, %s, %s)
+                INSERT INTO UserDetails (Username, Pword, FullName, email_id, phone_no, created_at, updated_at, created_by, updated_by)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
-        cursor.execute(insert_query, (Username, Pword, FullName, email_id, phone_no))
+        cursor.execute(insert_query, (Username, Pword, FullName, email_id, phone_no, created_at, updated_at, created_by, updated_by))
         connection.commit()
         return "User signed up successfully!"
     except Exception as e:

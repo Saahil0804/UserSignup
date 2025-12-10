@@ -2,6 +2,7 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 load_dotenv()
+from datetime import datetime
 
 # Validating new full name
 def validationForNewFname ():
@@ -78,21 +79,21 @@ def update_user_data(email_id, choice):
         if choice == 1:
             update_query = """
                 UPDATE UserDetails
-                SET FullName = %s
+                SET FullName = %s, updated_at = CURRENT_TIMESTAMP, updated_by = FullName
                 WHERE email_id = %s
             """
             cursor.execute(update_query, (name_update, email_id))
         if choice == 2:
             update_query = """
                 UPDATE UserDetails
-                SET phone_no = %s
+                SET phone_no = %s, updated_at = CURRENT_TIMESTAMP, updated_by = FullName
                 WHERE email_id = %s
             """
             cursor.execute(update_query, (phone_update, email_id))
         if choice == 3:
             update_query = """
                     UPDATE UserDetails
-                    SET FullName = %s, phone_no = %s
+                    SET FullName = %s, phone_no = %s, updated_at = CURRENT_TIMESTAMP, updated_by = FullName
                     WHERE email_id = %s
             """
             cursor.execute(update_query, (name_update, phone_update, email_id))
